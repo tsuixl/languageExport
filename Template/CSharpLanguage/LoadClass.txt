@@ -1,0 +1,24 @@
+using System.Collections.Generic;
+
+namespace LanguageExport
+{
+    public enum LanguageType
+    {
+$LOAD_TYPE$
+    }
+
+
+    public static class LanguageLoad 
+    {
+        public static Dictionary<int, string> Get (LanguageType type)
+        {
+            switch (type)
+            {
+$LOAD_CONTENT$
+            }
+            return null;
+        }
+    }
+}
+
+

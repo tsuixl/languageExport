@@ -1,0 +1,2 @@
+                case LanguageType.{0}:
+                    return {1}.Load();

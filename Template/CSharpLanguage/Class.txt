@@ -1,0 +1,20 @@
+using System.Collections.Generic;
+
+namespace LanguageExport
+{
+    public static class $CLASS_NAME$
+    {
+        private static Dictionary<int, string> _values;
+
+        public static Dictionary<int, string> Load ()
+        {
+            if (_values == null)
+            {
+                _values = new Dictionary<int, string>{
+$CONTENT$
+                };
+            }
+            return _values;
+        }
+    }
+}
