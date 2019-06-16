@@ -52,8 +52,9 @@ namespace Language.Convert
             if (!DesFolderPath.EndsWith("/"))
                 DesFolderPath += "/";
 
-            if (!Directory.Exists(SrcFolderPath))
+             if (!Directory.Exists(SrcFolderPath))
                 Log.e($"{SrcFolderPath} 找不到该目录!", true);
+            
 
             if (Args.ClearOutput)
             {

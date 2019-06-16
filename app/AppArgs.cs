@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.IO;
 
 public class AppArgs
 {
@@ -10,7 +11,7 @@ public class AppArgs
 
     public string SrcFile { get; private set; }
 
-    public bool ClearOutput {get; private set;} = true;
+    public bool ClearOutput { get; private set; } = true;
 
 
     public AppArgs(string[] args)
@@ -43,20 +44,34 @@ public class AppArgs
         }
         else if (key.Contains("src"))
         {
-            Src = value;
+            Src = GetPath(value);
         }
         else if (key.Contains("out"))
         {
-            Out = value;
+            Out = GetPath(value);
         }
-        else if (key.Contains("src_file"))
-        {
-            SrcFile = value;
-        }
+        // else if (key.Contains("src_file"))
+        // {
+        //     SrcFile = GetPath(value);
+        // }
         else if (key.Contains("clear_out"))
         {
             ClearOutput = value.ToLower() == "true";
         }
+    }
+
+
+    public static string GetPath(string path)
+    {
+        if (path.StartsWith("../"))
+        {
+            return string.Format("{0}/{1}", Directory.GetCurrentDirectory(), path);
+        }
+        else if (path.StartsWith("/.."))
+        {
+            return string.Format("{0}{1}", Directory.GetCurrentDirectory(), path);
+        }
+        return path;
     }
 
     public static string ArgTips()
@@ -64,9 +79,9 @@ public class AppArgs
         return
         "参数设置:\n" +
         "jenkins            在Jenkins中显示有颜色的日志.\n" +
-        "src                Excel目录.\n" + 
-        "out                输出目录.\n" + 
-        "src_file           导出单个文件,src不在处理.\n" + 
+        "src                Excel目录.\n" +
+        "out                输出目录.\n" +
+        // "src_file           导出单个文件,src不在处理.\n" +
         "clear_out          清空输出目录.\n"
         ;
     }
