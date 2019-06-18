@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Reflection;
 using Language.Convert;
 using Language.Util;
 using Newtonsoft.Json;
@@ -11,7 +10,7 @@ namespace app
         static void Main(string[] args)
         {
             Log.d(JsonConvert.SerializeObject (args), ConsoleColor.DarkBlue);
-            Log.d(System.IO.Directory.GetCurrentDirectory());
+            Log.d($"执行目录: {System.IO.Directory.GetCurrentDirectory()}", ConsoleColor.DarkBlue);
 
             // if (args.Length == 0)
             // {
